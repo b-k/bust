@@ -8,6 +8,10 @@ The to-do list
     --measure DHS
     --other sources
     --generate list
+    --collect information on antimalarials
+       --Placebos vs. genuine trial info
+       --Drug-taking regimen, contraindications
+       --Find out what "any" and "other" comprise
 
 --geocoding households and busts
 
