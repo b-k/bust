@@ -17,10 +17,10 @@ The to-do list
 4. statistical tests of changes
 
 # list of antimalarials
-SP/Fansidar
-Chloroquine
-Amodiaquine
-Quinine
-ACT
-Other antimalarial
-Any antimalarial drugs
+* SP/Fansidar
+* Chloroquine
+* Amodiaquine
+* Quinine
+* ACT
+* Other antimalarial
+* Any antimalarial drugs
