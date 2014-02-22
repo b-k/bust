@@ -4,20 +4,17 @@ bust
 The to-do list
 
 
---gathering data
-    --measure DHS
-    --other sources
-    --generate list
-    --collect information on antimalarials
-       --Placebos vs. genuine trial info
-       --Drug-taking regimen, contraindications
-       --Find out what "any" and "other" comprise
-
---geocoding households and busts
-
---mapping tasks
-
---statistical tests of changes
+1. gathering data
+..* measure DHS
+..* other sources
+..* generate list
+..* collect information on antimalarials
+....* Placebos vs. genuine trial info
+....* Drug-taking regimen, contraindications
+....* Find out what "any" and "other" comprise
+2. geocoding households and busts
+3. mapping tasks
+4. statistical tests of changes
 
 # list of antimalarials
 SP/Fansidar
