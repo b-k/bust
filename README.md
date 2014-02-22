@@ -1,7 +1,6 @@
 bust
 ====
 
-
 The to-do list
 
 
@@ -15,3 +14,12 @@ The to-do list
 --mapping tasks
 
 --statistical tests of changes
+
+# list of antimalarials
+SP/Fansidar
+Chloroquine
+Amodiaquine
+Quinine
+ACT
+Other antimalarial
+Any antimalarial drugs
