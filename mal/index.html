@@ -1,0 +1,70 @@
+<html>
+<title>Disease Interactive Map</title>
+<head>
+	<link rel="stylesheet" href="blackBox/css/leaflet.css" /> 
+	<link rel="stylesheet" href="blackBox/css/main.css" /> 
+	<style type="text/css">
+		/* Test New CSS */
+
+    /* End Test */
+    
+    @-moz-document url-prefix() {
+      .ethnicSwitch{
+        height: 10%;
+        overflow: hidden;
+        top: -445px !important;
+      }
+      .jobCenterSwitch{
+        height: 85px;
+        top:-105px !important;
+      }
+      #barchartPopup{
+        height: 13%;
+      }
+    }
+	</style>
+  <!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+  <!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+  <!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+  <!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+</head>
+<body style="background:#ccc;">	
+	<div id="mapdiv"></div>
+
+	<div id="dashboardA">
+    <div class="legendDiv"></div>
+
+    <div class="ethnicSwitch leaflet-control">
+      <form id="ethnicButtons">
+        <label><input type="radio" id="disease" name="disease" value="maleria" checked>Maleria</label><br />     
+        <label><input type="radio" id="disease" name="disease" value="aids" >HIV</label><br />
+        <label><input type="radio" id="disease" name="disease" value="tb">Tuberculosis</label>
+      </form>
+    </div>  
+	</div>
+   
+  <div class="chart"></div>
+  
+  <script type="text/javascript" src="blackBox/js/d3.v3.js" charset="utf-8"></script>
+  <script src="blackBox/js/jquery-2.0.3.min.js"></script> 
+  <script src="blackBox/js/leaflet.js"></script> 
+  <script src="blackBox/js/leafletMap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      //Code Here
+    });
+
+    (function ($) {
+        "use strict";
+        // Detecting IE
+        var oldIE;
+        if ($('html').is('.ie6, .ie7, .ie8, .ie9')) {
+            oldIE = true;
+        }
+        if (oldIE) {
+            alert("This App does not work well in earlier versions of Internet Explorer (IE). Please IE 10 or greater, thank you.")
+        } 
+    }(jQuery));
+  </script>
+</body>
+</html>
