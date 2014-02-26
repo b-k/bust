@@ -1,0 +1,79 @@
+
+apop_text_to_db 07_08_HH_subset.csv tan07 bust.db
+apop_text_to_db 11_12_HH_subset.csv tan11 bust.db
+apop_text_to_db 07_08_hiv.csv 07_08_hiv bust.db
+apop_text_to_db 11_12_hiv.csv 11_12_hiv bust.db
+
+weights=v005
+hhweights=hv005
+muni=hv024
+testresult=hiv03
+
+
+#join the `07 HIV data
+
+sqlite3 --column bust.db "create index hiv0703 on hiv07(hiv03)"
+sqlite3 --column bust.db "create index tan07xx on tan07(ha62)"
+sqlite3 --column bust.db "
+create table hivxtab07 as
+select $testresult, $muni, tan07.$hhweights weights, count(*) ct
+from tan07, hiv07 where
+`for i in $(seq 1 9); do 
+echo hiv07.hiv01 = tan07.ha62_$i or 
+done`
+0
+group by hv024, hiv03"
+
+apop_plot_query -n bust.db "
+create table fxtab07 as 
+select g.$muni, pos*g.weights, neg*b.weights
+            , pos*g.weights/(pos*g.weights+neg*b.weights+0.0)  ratio,  sqrt((pos/(pos+neg+0.0))*(neg/(pos+neg+0.0))/(pos+neg)) σ
+from (select hv024, weights, ct as pos from hivxtab07 where hiv03='hiv  positive' group by hv024) g,
+(select hv024, weights, ct as neg from hivxtab07 where hiv03='hiv negative' group by hv024) b
+where g.hv024=b.hv024
+"
+
+
+bloodid=ha62
+
+
+sqlite3 --column bust.db "drop table hivxtab"
+sqlite3 --column bust.db "
+create table hivxtab as
+select hiv03, $muni , $hhweights as weights, count(*) ct
+from tan11, hiv11 where
+`for i in $(seq 1 9); do 
+echo hiv11.hiv01 = tan11.ha62_0$i or 
+done`
+0
+group by $muni , hiv03"
+
+
+apop_plot_query -n bust.db "
+create table fxtab11 as 
+select g.$muni, pos*g.weights, neg*b.weights
+            , pos*g.weights/(pos*g.weights+neg*b.weights+0.0)  ratio,  sqrt((pos/(pos+neg+0.0))*(neg/(pos+neg+0.0))/(pos+neg)) σ
+from (select hv024, weights, ct as pos from hivxtab where hiv03='hiv  positive' group by hv024) g,
+(select hv024, weights, ct as neg from hivxtab where hiv03='hiv negative' group by hv024) b
+where g.hv024=b.hv024
+"
+
+
+
+#now combine to get diffs.
+
+sqlite3 --column bust.db "create index hiv1103 on hiv11(hiv03)"
+sqlite3 --column bust.db "create index tan11 on tan11(s816)"
+
+
+
+apop_plot_query -n bust.db "create table summary as 
+ select fxtab07.hv024, (fxtab11.ratio - fxtab07.ratio) diff ,
+sqrt (fxtab11.σ *fxtab11.σ + fxtab07.σ *fxtab07.σ)
+from
+fxtab07, fxtab11
+where fxtab11.$muni==fxtab07.hv024 order by diff"
+
+
+
+
